@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{meta_title}}</title>
+  <meta name="description" content="{{meta_description}}" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{meta_title}}" />
+  <meta property="og:description" content="{{meta_description}}" />
+  {{#if meta_image}}
+  <meta property="og:image" content="{{meta_image}}" />
+  {{/if}}
+  <meta property="og:type" content="website" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+  
+  {{#if site.ga_id}}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{site.ga_id}}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{site.ga_id}}');
+  </script>
+  {{/if}}
+
+  <!-- Theme Setup before page paints to prevent FOUC -->
+  <script>
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else if (savedTheme === 'light') {
+      document.documentElement.classList.add('light');
+    }
+  </script>
+
+  <style>
+    :root, :root.dark {
+      --brand-primary: {{site.brand_primary}};
+      --brand-secondary: {{site.brand_secondary}};
+      --brand-primary-text: {{site.brand_primary_text}};
+      --brand-secondary-text: {{site.brand_secondary_text}};
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-bg-body text-text-main font-['Inter'] antialiased selection:bg-brand-primary selection:text-black" {{#if site.language}}data-feed-language="{{site.language}}"{{/if}}>
+
+  <!-- Header -->
+  <header class="border-b border-border-subtle sticky top-0 z-50 bg-bg-header backdrop-blur-xl supports-[backdrop-filter]:bg-opacity-60">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-4 group">
+        {{#if site.image}}
+          <div class="relative">
+            <div class="absolute inset-0 bg-brand-primary blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-xl"></div>
+            <img src="{{site.image}}" alt="{{site.title}} Logo" class="relative w-12 h-12 rounded-xl shadow-[0_0_15px_var(--shadow-color)] border border-border-subtle object-cover" />
+          </div>
+        {{/if}}
+        <div>
+          <h1 class="font-['Outfit'] font-black text-xl tracking-tight leading-none text-text-main group-hover:text-brand-primary transition-colors">{{site.title}}</h1>
+          <p class="text-[10px] text-brand-secondary-text font-bold tracking-[0.2em] uppercase mt-1" data-t="podcast">Podcast</p>
+        </div>
+      </a>
+      
+      <div class="flex items-center gap-4">
+        <!-- Language Selector -->
+        <div class="relative group {{#if site.language}}hidden{{/if}}">
+          <select id="language-select" class="appearance-none bg-[var(--btn-bg)] border border-border-subtle rounded-full px-4 py-2 text-xs font-bold text-text-muted hover:text-text-main focus:outline-none focus:ring-2 focus:ring-brand-primary/30 transition-all cursor-pointer">
+            <option value="en">EN</option>
+            <option value="cs">CS</option>
+            <option value="de">DE</option>
+            <option value="fr">FR</option>
+            <option value="es">ES</option>
+            <option value="it">IT</option>
+            <option value="pl">PL</option>
+          </select>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="p-2.5 rounded-full border border-border-subtle bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] text-text-muted hover:text-text-main transition-colors mx-2" aria-label="Toggle Dark Mode">
+          <svg class="w-5 h-5 hidden" id="theme-icon-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+          <svg class="w-5 h-5 hidden" id="theme-icon-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </button>
+        
+        <a href="{{site.link}}" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 border border-brand-primary/50 shadow-[0_0_15px_rgba(255,216,0,0.1)] text-sm font-semibold rounded-full text-brand-primary-text bg-brand-primary/10 hover:bg-brand-primary hover:text-black hover:shadow-[0_0_20px_rgba(255,216,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300" data-t="subscribe">
+          Subscribe
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="w-full relative">
+    {{> @partial-block }}
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-border-subtle mt-32 bg-bg-card relative overflow-hidden">
+    <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center sm:text-left sm:flex sm:items-center sm:justify-between relative z-10">
+      <p class="text-sm text-text-muted font-light">&copy; {{site.title}}. All rights reserved.</p>
+      <div class="mt-6 sm:mt-0 flex justify-center space-x-8">
+        <a href="/" class="text-sm font-medium text-text-muted hover:text-brand-primary transition-colors">Home</a>
+        <a href="{{site.link}}" class="text-sm font-medium text-text-muted hover:text-brand-primary transition-colors">Podcast Feed</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

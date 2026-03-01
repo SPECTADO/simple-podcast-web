@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-primary-text: var(--brand-primary-text-themed);
+  --color-brand-secondary-text: var(--brand-secondary-text-themed);
+  --color-bg-body: var(--bg-body);
+  --color-bg-card: var(--bg-card);
+  --color-bg-header: var(--bg-header);
+  --color-border-subtle: var(--border-subtle);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+}
+
+:root {
+  /* Brand colors (Shared) - Injected via layout.hbs from .env */
+  --brand-primary-text-themed: var(--brand-primary-text);
+  --brand-secondary-text-themed: var(--brand-secondary-text);
+
+  /* Default Light Mode Colors */
+  --bg-body: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-header: rgba(255, 255, 255, 0.9);
+  --border-subtle: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  
+  /* Additional variables to map the previous dark-mode raw colors */
+  --btn-bg: rgba(0, 0, 0, 0.05);
+  --btn-border: rgba(0, 0, 0, 0.1);
+  --btn-hover-border: rgba(0, 0, 0, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --hero-glow-1: rgba(255, 216, 0, 0.1);
+  --hero-glow-2: transparent;
+}
+
+/* Dark Mode Colors - Applied when .dark is present or as an OS fallback when no class is specified */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg-body: #0a0a0c;
+    --bg-card: #141417;
+    --bg-header: rgba(10, 10, 12, 0.8);
+    --border-subtle: #27272a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+
+    --brand-primary-text-themed: var(--brand-primary);
+    --brand-secondary-text-themed: var(--brand-secondary);
+
+    --btn-bg: rgba(255, 255, 255, 0.05);
+    --btn-border: rgba(255, 255, 255, 0.1);
+    --btn-hover-border: rgba(255, 255, 255, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.05);
+    --hero-glow-1: rgba(255, 216, 0, 0.1);
+    --hero-glow-2: rgba(225, 31, 16, 0.05);
+  }
+}
+
+:root.dark {
+  --bg-body: #0a0a0c;
+  --bg-card: #141417;
+  --bg-header: rgba(10, 10, 12, 0.8);
+  --border-subtle: #27272a;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --brand-primary-text-themed: var(--brand-primary);
+  --brand-secondary-text-themed: var(--brand-secondary);
+
+  --btn-bg: rgba(255, 255, 255, 0.05);
+  --btn-border: rgba(255, 255, 255, 0.1);
+  --btn-hover-border: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --hero-glow-1: rgba(255, 216, 0, 0.1);
+  --hero-glow-2: rgba(225, 31, 16, 0.05);
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+/* Audio Player */
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .custom-audio-player {
+    filter: invert(0.85) hue-rotate(180deg) opacity(0.9);
+  }
+}
+html.dark .custom-audio-player {
+  filter: invert(0.85) hue-rotate(180deg) opacity(0.9);
+}
+.custom-audio-player {
+  border-radius: 9999px;
+  outline: none;
+}
+.custom-audio-player::-webkit-media-controls-panel {
+  background-color: #e5e5e5;
+}

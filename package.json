@@ -1,0 +1,26 @@
+{
+  "name": "simple-podcast-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx scripts/build.ts && vite",
+    "build": "tsx scripts/build.ts && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/vite": "^4.2.1",
+    "@types/marked": "^5.0.2",
+    "@types/node": "^25.3.3",
+    "dotenv": "^17.3.1",
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "marked": "^17.0.3",
+    "rss-parser": "^3.13.0",
+    "tailwindcss": "^4.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.1"
+  }
+}

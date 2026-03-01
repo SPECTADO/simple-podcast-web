@@ -1,0 +1,101 @@
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+  <article class="bg-bg-card rounded-[2.5rem] border border-border-subtle overflow-hidden shadow-2xl relative">
+    
+    <!-- Decorative glow -->
+    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-brand-primary/80 to-transparent"></div>
+    <div class="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-brand-primary/10 to-transparent pointer-events-none"></div>
+
+    <!-- Episode Header -->
+    <header class="p-8 md:p-14 border-b border-border-subtle bg-[var(--btn-bg)] relative z-10">
+      <div class="flex items-center gap-4 text-[11px] text-text-muted font-bold mb-8 uppercase tracking-[0.2em]">
+        <a href="/" class="hover:text-brand-primary transition-colors flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] transition-all duration-300">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l-7-7m7-7h18"></path></svg>
+          <span data-t="back">Back</span>
+        </a>
+        <span class="text-text-muted/40">&bull;</span>
+        <time datetime="{{episode.pubDate}}" data-date="{{episode.pubDate}}" class="text-brand-primary-text drop-shadow-[0_0_8px_rgba(255,216,0,0.5)]">{{episode.pubDate}}</time>
+      </div>
+      
+      <h2 class="font-['Outfit'] text-4xl md:text-5xl lg:text-6xl font-black text-text-main tracking-tighter leading-[1.1] mb-10">{{#if episode.title}}{{episode.title}}{{else}}{{episode.id}}{{/if}}</h2>
+      
+      <!-- YouTube Embed -->
+      {{#if episode.youtube_id}}
+      <div class="relative pt-[56.25%] rounded-3xl overflow-hidden shadow-2xl mb-12 border border-[var(--btn-border)] bg-black">
+        <iframe 
+          class="absolute inset-0 w-full h-full"
+          src="https://www.youtube.com/embed/{{episode.youtube_id}}" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      {{/if}}
+
+      <!-- Main Audio Player -->
+      {{#if episode.enclosure.url}}
+      <div class="bg-bg-header rounded-2xl p-4 md:px-6 md:py-4 border border-brand-primary/30 shadow-[0_0_30px_rgba(255,216,0,0.1)] sticky top-[88px] z-40 backdrop-blur-xl supports-[backdrop-filter]:bg-opacity-60">
+        <div class="custom-audio-wrapper w-full flex items-center gap-4">
+          <div class="flex flex-col gap-1">
+            <span class="text-[10px] text-brand-primary-text font-black uppercase tracking-widest opacity-70" data-t="podcast">Podcast</span>
+            <button class="play-pause-btn flex items-center gap-2 text-text-main hover:text-brand-primary transition-colors group/play">
+              <span class="text-sm font-bold uppercase tracking-tighter" data-t="play">Play</span>
+              <div class="play-icon w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-black group-hover/play:scale-110 transition-transform">
+                <svg class="w-4 h-4 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <div class="pause-icon hidden w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-black group-hover/play:scale-110 transition-transform">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </div>
+            </button>
+          </div>
+          <div class="flex-1 flex flex-col gap-1.5 pt-1">
+            <div class="flex justify-between text-xs text-text-muted font-medium font-mono">
+              <span class="time-current">0:00</span>
+              <span class="time-total">0:00</span>
+            </div>
+            <div class="progress-bg relative w-full h-2 rounded-full bg-border-subtle cursor-pointer hover:h-3 transition-all">
+              <div class="progress-fg absolute left-0 top-0 h-full rounded-full bg-brand-primary pointer-events-none w-0"></div>
+            </div>
+          </div>
+          <audio class="hidden-audio" src="{{episode.enclosure.url}}" preload="metadata"></audio>
+        </div>
+      </div>
+      {{/if}}
+      
+      <!-- Download extra files -->
+      {{#if episode.downloads}}
+      <div class="mt-12 bg-[var(--btn-bg)] rounded-2xl p-6 border border-border-subtle">
+        <h4 class="text-[11px] font-bold text-text-muted uppercase tracking-[0.2em] mb-5 flex items-center gap-3">
+          <svg class="w-4 h-4 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path></svg>
+          <span data-t="bonus_content">Bonus Content</span>
+        </h4>
+        <div class="flex flex-wrap gap-3">
+          {{#each episode.downloads}}
+          <a href="{{this.url}}" download class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--btn-border)] bg-[var(--btn-bg)] text-sm font-semibold text-text-main hover:text-bg-body hover:bg-brand-primary hover:border-brand-primary hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            {{this.title}}
+          </a>
+          {{/each}}
+        </div>
+      </div>
+      {{/if}}
+    </header>
+
+    <!-- Episode Description & Markdown Content -->
+    <div class="p-8 md:p-14 text-text-main font-light leading-relaxed bg-bg-card">
+      
+      {{#if episode.customHtml}}
+        <!-- Dark mode uses prose-invert natively through tailwind plugin if dark class mapped, but given we rely on CSS variables for prefers-color-scheme, we'll strip prose-invert and lean heavily on variables or rely on user's system dark mode -->
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-['Outfit'] prose-headings:font-bold prose-headings:tracking-tight prose-a:text-brand-primary-text hover:prose-a:text-brand-secondary-text prose-img:rounded-2xl prose-img:border prose-img:border-border-subtle prose-img:shadow-xl prose-hr:border-border-subtle marker:text-brand-primary-text transition-colors duration-300">
+          {{{episode.customHtml}}}
+        </div>
+      {{else}}
+        <!-- Fallback RSS content -->
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-headings:font-['Outfit'] prose-headings:font-bold prose-headings:tracking-tight prose-a:text-brand-primary hover:prose-a:text-brand-secondary prose-img:rounded-2xl prose-hr:border-border-subtle marker:text-brand-primary">
+          {{{episode.content}}}
+        </div>
+      {{/if}}
+
+    </div>
+  </article>
+</div>
