@@ -43,15 +43,24 @@
             {{/if}}
           </div>
           
-          <a href="/episode/{{this.id}}/" class="block mb-4">
-            <h4 class="font-['Outfit'] text-2xl md:text-3xl font-bold text-text-main group-hover:text-brand-primary transition-colors leading-tight tracking-tight">
-              {{this.title}}
-            </h4>
-          </a>
-          
-          <p class="text-text-muted line-clamp-2 md:line-clamp-3 leading-relaxed font-light text-[15px] mb-8 max-w-4xl">
-            {{this.contentSnippet}}
-          </p>
+          <div class="flex flex-col md:flex-row gap-6 mb-8 w-full">
+            <div class="flex-1">
+              <a href="/episode/{{this.id}}/" class="block mb-4">
+                <h4 class="font-['Outfit'] text-2xl md:text-3xl font-bold text-text-main group-hover:text-brand-primary transition-colors leading-tight tracking-tight">
+                  {{this.title}}
+                </h4>
+              </a>
+              <p class="text-text-muted line-clamp-2 md:line-clamp-3 leading-relaxed font-light text-[15px] max-w-4xl">
+                {{this.contentSnippet}}
+              </p>
+            </div>
+            
+            {{#if this.image}}
+            <a href="/episode/{{this.id}}/" class="shrink-0 block relative w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-[200px] lg:h-[200px] rounded-2xl overflow-hidden border border-border-subtle group-hover:border-brand-primary/30 transition-colors bg-black/5">
+              <img src="{{this.image}}" alt="{{this.title}}" class="absolute inset-0 w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700">
+            </a>
+            {{/if}}
+          </div>
           
           <div class="flex flex-col sm:flex-row sm:items-center gap-6 w-full mt-auto">
             {{#if this.enclosure.url}}

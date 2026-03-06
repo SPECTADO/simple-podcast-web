@@ -1,18 +1,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import 'dotenv/config';
 import Parser from 'rss-parser';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import Handlebars from 'handlebars';
+import { config } from '../_config.ts';
 
-const PODCAST_URL = process.env.PODCAST_URL;
-const GA_ID = process.env.GA_ID;
-const BRAND_PRIMARY = process.env.BRAND_PRIMARY || '#96cae4';
-const BRAND_SECONDARY = process.env.BRAND_SECONDARY || '#3186c3';
+const PODCAST_URL = config.podcastUrl;
+const GA_ID = config.gaId;
+const BRAND_PRIMARY = config.brandPrimary || '#96cae4';
+const BRAND_SECONDARY = config.brandSecondary || '#3186c3';
 
 if (!PODCAST_URL) {
-  console.error('Missing PODCAST_URL in .env');
+  console.error('Missing podcastUrl in _config.ts');
   process.exit(1);
 }
 
@@ -29,13 +29,7 @@ async function build() {
   console.log(`Fetching podcast from ${PODCAST_URL}...`);
   const feed = await parser.parseURL(PODCAST_URL as string);
   const episodes = feed.items.map(item => {
-    let title = item.title || 'untitled';
-    // Match leading "Number. " and increment if found
-    const match = title.match(/^(\d+)\.\s*(.*)/);
-    if (match) {
-      const num = parseInt(match[1], 10);
-      title = `${num + 1}. ${match[2]}`;
-    }
+    const title = item.title || 'untitled';
     const id = slugify(title);
     return { ...item, title, id };
   });
@@ -76,15 +70,24 @@ async function build() {
 
     return {
       ...ep,
+      image: (ep as any).itunes?.image || (ep as any).image?.url,
       customHtml,
       ...customMeta // allows overriding title, adding youtube_id, downloads, etc.
     };
   });
 
+  // Load and parse footer
+  let footerHtml = '&copy; Simple Podcast Web. All rights reserved.';
+  const footerPath = path.join(contentDir, '_footer.md');
+  if (fs.existsSync(footerPath)) {
+    const footerContent = fs.readFileSync(footerPath, 'utf-8');
+    footerHtml = marked.parse(footerContent) as string;
+  }
+
   const siteData = {
     title: feed.title,
     description: feed.description,
-    image: feed.image?.url,
+    image: (feed as any).itunes?.image || feed.image?.url,
     link: feed.link,
     ga_id: GA_ID,
     brand_primary: BRAND_PRIMARY,
@@ -92,6 +95,9 @@ async function build() {
     brand_primary_text: BRAND_PRIMARY === '#96cae4' ? '#075985' : darkenColor(BRAND_PRIMARY, 0.6),
     brand_secondary_text: BRAND_SECONDARY === '#3186c3' ? '#1e40af' : darkenColor(BRAND_SECONDARY, 0.6),
     language: feed.language,
+    subscribe_links: config.subscribeLinks,
+    social_links: config.socialLinks,
+    footer_html: footerHtml,
   };
 
   // Generate Home
@@ -100,7 +106,7 @@ async function build() {
     episodes: enrichedEpisodes,
     meta_title: feed.title,
     meta_description: feed.description,
-    meta_image: feed.image?.url,
+    meta_image: (feed as any).itunes?.image || feed.image?.url,
   });
   fs.writeFileSync(path.resolve('index.html'), homeHtml);
 
@@ -120,7 +126,7 @@ async function build() {
       episode: ep,
       meta_title: `${ep.title} | ${feed.title}`,
       meta_description: stripHtml(ep.contentSnippet || ep.content || ''),
-      meta_image: (ep as any).itunes?.image || feed.image?.url,
+      meta_image: (ep as any).itunes?.image || (feed as any).itunes?.image || feed.image?.url,
     });
     
     const epFile = path.resolve(epDir, 'index.html');

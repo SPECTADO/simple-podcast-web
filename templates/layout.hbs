@@ -81,15 +81,29 @@
           </select>
         </div>
 
+        <div class="hidden sm:flex items-center gap-2 mr-2">
+          {{#if site.subscribe_links.spotify}}
+          <a href="{{site.subscribe_links.spotify}}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] text-text-muted hover:text-[#1DB954] border border-[var(--btn-border)] transition-all" aria-label="Spotify">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 496 512"><path d="M248 8C111.1 8 0 119.1 0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8zm100.7 364.9c-4.2 0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7 0-15.8-7.7-15.8-15.8 0-10.3 6.1-14.3 15.1-16.8 81.7-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-16.7 15.4zm26.9-65.6c-5.2 0-8.7-2.3-12.3-4.9-74.4-48-164.2-52.8-245.4-31.1-3.9 1-7.1 1.6-9.7 1.6-11.6 0-19.7-9.4-19.7-19.4 0-12.3 5.8-17.1 16.5-19.7 90.5-24.5 190.5-19.1 276.1 36.2 5.5 3.6 10 9.4 10 18.1-.3 11-10 19.2-21.5 19.2zm32-70.6c-5.8 0-9.7-1.9-14.5-4.9-85.3-54.8-202.8-63.5-296.8-37.5-3.9 1.3-8.1 1.9-11 1.9-13.6 0-23.3-11.6-23.3-23.6 0-15.5 7.4-21.3 21-25.2 105.7-30.7 236.4-20 334.8 43.3 6.8 4.5 12 11 12 21.6 0 13.9-11 24.4-24.2 24.4z"/></svg>
+          </a>
+          {{/if}}
+          {{#if site.subscribe_links.apple}}
+          <a href="{{site.subscribe_links.apple}}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] text-text-muted hover:text-[#9933FF] border border-[var(--btn-border)] transition-all" aria-label="Apple Podcasts">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.056 2.587 1.224 1.272 1.912 2.619 2.264 4.392.12.59.12 2.2.007 2.864a8.506 8.506 0 01-3.24 5.296c-.608.46-2.096 1.261-2.336 1.261-.088 0-.096-.091-.056-.46.072-.592.144-.715.48-.856.536-.224 1.448-.874 2.008-1.435a7.644 7.644 0 002.008-3.536c.208-.824.184-2.656-.048-3.504-.728-2.696-2.928-4.792-5.624-5.352-.784-.16-2.208-.16-3 0-2.728.56-4.984 2.76-5.672 5.528-.184.752-.184 2.584 0 3.336.456 1.832 1.64 3.512 3.192 4.512.304.2.672.408.824.472.336.144.408.264.472.856.04.36.03.464-.056.464-.056 0-.464-.176-.896-.384l-.04-.03c-2.472-1.216-4.056-3.274-4.632-6.012-.144-.706-.168-2.392-.03-3.04.36-1.74 1.048-3.1 2.192-4.304 1.648-1.737 3.768-2.656 6.128-2.656zm.134 2.81c.409.004.803.04 1.106.106 2.784.62 4.76 3.408 4.376 6.174-.152 1.114-.536 2.03-1.216 2.88-.336.43-1.152 1.15-1.296 1.15-.023 0-.048-.272-.048-.603v-.605l.416-.496c1.568-1.878 1.456-4.502-.256-6.224-.664-.67-1.432-1.064-2.424-1.246-.64-.118-.776-.118-1.448-.008-1.02.167-1.81.562-2.512 1.256-1.72 1.704-1.832 4.342-.264 6.222l.413.496v.608c0 .336-.027.608-.06.608-.03 0-.264-.16-.512-.36l-.034-.011c-.832-.664-1.568-1.842-1.872-2.997-.184-.698-.184-2.024.008-2.72.504-1.878 1.888-3.335 3.808-4.019.41-.145 1.133-.22 1.814-.211zm-.13 2.99c.31 0 .62.06.844.178.488.253.888.745 1.04 1.259.464 1.578-1.208 2.96-2.72 2.254h-.015c-.712-.331-1.096-.956-1.104-1.77 0-.733.408-1.371 1.112-1.745.224-.117.534-.176.844-.176zm-.011 4.728c.988-.004 1.706.349 1.97.97.198.464.124 1.932-.218 4.302-.232 1.656-.36 2.074-.68 2.356-.44.39-1.064.498-1.656.288h-.003c-.716-.257-.87-.605-1.164-2.644-.341-2.37-.416-3.838-.218-4.302.262-.616.974-.966 1.97-.97z"/></svg>
+          </a>
+          {{/if}}
+          {{#if site.subscribe_links.youtube}}
+          <a href="{{site.subscribe_links.youtube}}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-full bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] text-text-muted hover:text-[#FF0000] border border-[var(--btn-border)] transition-all" aria-label="YouTube">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+          </a>
+          {{/if}}
+        </div>
+
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="p-2.5 rounded-full border border-border-subtle bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] text-text-muted hover:text-text-main transition-colors mx-2" aria-label="Toggle Dark Mode">
+        <button id="theme-toggle" class="p-2 rounded-full border border-[var(--btn-border)] bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] text-text-muted hover:text-text-main transition-colors" aria-label="Toggle Dark Mode">
           <svg class="w-5 h-5 hidden" id="theme-icon-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
           <svg class="w-5 h-5 hidden" id="theme-icon-light" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
         </button>
-        
-        <a href="{{site.link}}" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 border border-brand-primary/50 shadow-[0_0_15px_rgba(255,216,0,0.1)] text-sm font-semibold rounded-full text-brand-primary-text bg-brand-primary/10 hover:bg-brand-primary hover:text-black hover:shadow-[0_0_20px_rgba(255,216,0,0.3)] hover:scale-105 active:scale-95 transition-all duration-300" data-t="subscribe">
-          Subscribe
-        </a>
       </div>
     </div>
   </header>
@@ -103,10 +117,33 @@
   <footer class="border-t border-border-subtle mt-32 bg-bg-card relative overflow-hidden">
     <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-brand-primary/40 to-transparent"></div>
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center sm:text-left sm:flex sm:items-center sm:justify-between relative z-10">
-      <p class="text-sm text-text-muted font-light">&copy; {{site.title}}. All rights reserved.</p>
-      <div class="mt-6 sm:mt-0 flex justify-center space-x-8">
-        <a href="/" class="text-sm font-medium text-text-muted hover:text-brand-primary transition-colors">Home</a>
-        <a href="{{site.link}}" class="text-sm font-medium text-text-muted hover:text-brand-primary transition-colors">Podcast Feed</a>
+      <div class="text-sm text-text-muted font-light prose prose-sm dark:prose-invert prose-a:text-brand-primary-text hover:prose-a:text-brand-secondary-text">
+        {{{site.footer_html}}}
+      </div>
+      <div class="mt-6 sm:mt-0 flex flex-col sm:items-end gap-6">
+        <div class="flex justify-center sm:justify-end space-x-6">
+          {{#if site.social_links.instagram}}
+          <a href="{{site.social_links.instagram}}" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-brand-primary transition-colors" aria-label="Instagram">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          {{/if}}
+          {{#if site.social_links.facebook}}
+          <a href="{{site.social_links.facebook}}" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-brand-primary transition-colors" aria-label="Facebook">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-8.74h-2.94v-3.403h2.94v-2.511c0-2.91 1.777-4.495 4.375-4.495 1.242 0 2.311.092 2.622.134v3.04l-1.799.001c-1.412 0-1.687.672-1.687 1.655v2.172h3.366l-.438 3.403h-2.928v8.74h6.052c.732 0 1.325-.593 1.325-1.325v-21.351c0-.732-.593-1.325-1.325-1.325z"/></svg>
+          </a>
+          {{/if}}
+        </div>
+        <div class="flex flex-wrap justify-center sm:justify-end gap-x-8 gap-y-2">
+          {{#if site.subscribe_links.spotify}}
+          <a href="{{site.subscribe_links.spotify}}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-text-muted hover:text-brand-primary transition-colors">Spotify</a>
+          {{/if}}
+          {{#if site.subscribe_links.apple}}
+          <a href="{{site.subscribe_links.apple}}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-text-muted hover:text-brand-primary transition-colors">Apple Podcasts</a>
+          {{/if}}
+          {{#if site.subscribe_links.youtube}}
+          <a href="{{site.subscribe_links.youtube}}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-text-muted hover:text-brand-primary transition-colors">YouTube</a>
+          {{/if}}
+        </div>
       </div>
     </div>
   </footer>

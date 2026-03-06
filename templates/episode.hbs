@@ -9,7 +9,7 @@
     <header class="p-8 md:p-14 border-b border-border-subtle bg-[var(--btn-bg)] relative z-10">
       <div class="flex items-center gap-4 text-[11px] text-text-muted font-bold mb-8 uppercase tracking-[0.2em]">
         <a href="/" class="hover:text-brand-primary transition-colors flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--btn-bg)] hover:bg-[var(--btn-hover-border)] transition-all duration-300">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l-7-7m7-7h18"></path></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path></svg>
           <span data-t="back">Back</span>
         </a>
         <span class="text-text-muted/40">&bull;</span>
@@ -17,6 +17,8 @@
       </div>
       
       <h2 class="font-['Outfit'] text-4xl md:text-5xl lg:text-6xl font-black text-text-main tracking-tighter leading-[1.1] mb-10">{{#if episode.title}}{{episode.title}}{{else}}{{episode.id}}{{/if}}</h2>
+      
+
       
       <!-- YouTube Embed -->
       {{#if episode.youtube_id}}
